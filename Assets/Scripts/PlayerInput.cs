@@ -39,5 +39,14 @@ public class PlayerInput : MonoBehaviour
     reload = Input.GetButtonDown(reloadButtonName);
 
     mousePos = Input.mousePosition;
+
+    //카메라 위치
+    Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+
+    if (Input.GetMouseButtonDown(0))
+    {
+      Debug.Log("mouse : " + Input.mousePosition);
+      Debug.Log("world : " + point);
+    }
   }
 }
