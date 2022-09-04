@@ -39,27 +39,7 @@ public class PlayerMovement : MonoBehaviour
   // 입력값에 따라 캐릭터를 좌우로 회전
   private void Rotate()
   {
-    //float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
-    //playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0f, turn, 0f);
-    //Debug.Log($"player rotation angle : {playerRigidbody.rotation.eulerAngles.x}");
-
-    // 현재 마우스 포지션에서 정면방향 * 10으로 이동한 위치의 월드좌표 구하기
-    //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 10f);
-    Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(playerInput.mousePos.x, Camera.main.nearClipPlane, -playerInput.mousePos.y));
-    //Debug.Log(playerInput.mousePos.x + " / " + mouseWorldPosition.x);
-
-    // Atan2를 이용하면 높이와 밑변(tan)으로 라디안(Radian)을 구할 수 있음
-    // Mathf.Rad2Deg를 곱해서 라디안(Radian)값을 도수법(Degree)으로 변환
-    float angle = Mathf.Atan2(
-        this.transform.position.y - mouseWorldPosition.y,
-        this.transform.position.x - mouseWorldPosition.x) * Mathf.Rad2Deg;
-
-    // angle이 0~180의 각도라서 보정
-    float final = -(angle + 90f);
-    // 로그를 통해서 값 확인
-    //Debug.Log(angle + " / " + final);
-
-    // Y축 회전
-    this.transform.rotation = Quaternion.Euler(new Vector3(0f, final, 0f));
+    float turn = playerInput.rotate * rotateSpeed * Time.deltaTime;
+    playerRigidbody.rotation = playerRigidbody.rotation * Quaternion.Euler(0f, turn, 0f);
   }
 }
